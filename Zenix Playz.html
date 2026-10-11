@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zenix Playz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --base:#fbf9f4;--ink:#2b2140;--card:rgba(255,255,255,.82);--onhue:#1d1530;--hue:#fcc419;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--base:#17121f;--ink:#f3ecff;--card:rgba(37,29,51,.85)}}
+:root[data-theme="dark"]{--base:#17121f;--ink:#f3ecff;--card:rgba(37,29,51,.85)}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%}
+body{margin:0;min-height:100%;color:var(--ink);font:400 17px/1.6 Nunito,system-ui,sans-serif;overflow-x:hidden;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--hue) 34%,var(--base)),color-mix(in srgb,var(--hue) 9%,var(--base)));
+  background-attachment:fixed}
+body[data-t=home]{--hue:#fcc419}
+body[data-t=about]{--hue:#4dabf7}
+body[data-t=minecraft]{--hue:#51cf66}
+body[data-t=specs]{--hue:#ff922b}
+body[data-t=community]{--hue:#9775fa}
+body[data-t=contact]{--hue:#22b8cf}
+h1,h2,h3{font-family:Fredoka,"Trebuchet MS",sans-serif;margin:0;line-height:1.15}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fx i{position:absolute;font-style:normal;color:var(--hue);opacity:.55;animation:rise 9s linear infinite}
+@keyframes rise{from{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.6}to{transform:translateY(-110vh) rotate(200deg);opacity:0}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;padding:10px 0;
+  background:color-mix(in srgb,var(--hue) 20%,var(--base));border-bottom:3px solid var(--hue)}
+nav{display:flex;gap:8px;overflow-x:auto;padding:0 14px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;font:600 16px Fredoka,sans-serif;color:var(--ink);background:var(--card);border:3px solid var(--hue);border-radius:999px;padding:8px 16px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--hue);color:var(--onhue);box-shadow:0 4px 0 color-mix(in srgb,var(--hue) 60%,#000)}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:26px 16px 60px}
+.panel{animation:pop .35s ease-out}
+.panel[hidden]{display:none}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+h2{font-size:clamp(30px,7vw,44px);margin-bottom:6px}
+.lead{margin:0 0 22px;opacity:.85}
+.card{background:var(--card);border:3px solid var(--hue);border-radius:22px;padding:18px 20px;box-shadow:0 6px 0 var(--hue)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card h3{font-size:21px;margin-bottom:4px}
+.card p{margin:0;opacity:.85;font-size:16px}
+.ico{font-size:30px;display:block;margin-bottom:6px}
+.hero{text-align:center;padding-top:10px}
+.hero h1{font-size:clamp(44px,12vw,72px);color:var(--ink);text-shadow:0 4px 0 var(--hue)}
+.hero p{max-width:30em;margin:12px auto 18px}
+.char{position:relative;width:min(58vw,210px);margin:0 auto 8px;animation:bob 3s ease-in-out infinite}
+.char img{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 0 rgba(0,0,0,.18))}
+.sword{position:absolute;width:22%;left:74.5%;top:22.4%;transform-origin:50% 81%;animation:swing 2.4s ease-in-out infinite;filter:drop-shadow(0 0 6px #4fd8d0)}
+@keyframes swing{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(16deg)}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.eye{animation:blink 4s infinite;transform-box:fill-box;transform-origin:center}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:20px}
+.chip{font:600 15px Fredoka,sans-serif;background:var(--card);border:3px solid var(--hue);border-radius:999px;padding:4px 14px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 17px Fredoka,sans-serif;text-decoration:none;color:var(--onhue);background:var(--hue);border:3px solid color-mix(in srgb,var(--hue) 55%,#000);border-radius:16px;padding:12px 20px;box-shadow:0 5px 0 color-mix(in srgb,var(--hue) 55%,#000);cursor:pointer}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 color-mix(in srgb,var(--hue) 55%,#000)}
+.btn.dc{background:#5865f2;color:#fff;border-color:#3c47b8;box-shadow:0 5px 0 #3c47b8}
+.btn.yt{background:#ff2d4a;color:#fff;border-color:#b3112b;box-shadow:0 5px 0 #b3112b}
+.btn[disabled]{opacity:.6;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.spec{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:2px dashed color-mix(in srgb,var(--hue) 55%,transparent)}
+.spec:last-child{border:0}
+.spec b{font-family:Fredoka,sans-serif;font-weight:600}
+.spec span{text-align:right;opacity:.9}
+.ip{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;margin-bottom:18px}
+.ip code{font:700 22px Fredoka,sans-serif;color:var(--hue)}
+.stack>*{margin-bottom:16px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+</style>
+</head>
+<body data-t="home">
+<div class="fx" aria-hidden="true">
+  <i style="left:6%;bottom:-6%;font-size:22px;animation-delay:0s">✦</i>
+  <i style="left:20%;bottom:-6%;font-size:30px;animation-delay:2s">♥</i>
+  <i style="left:38%;bottom:-6%;font-size:18px;animation-delay:4s">★</i>
+  <i style="left:55%;bottom:-6%;font-size:26px;animation-delay:1s">✦</i>
+  <i style="left:70%;bottom:-6%;font-size:20px;animation-delay:5s">♥</i>
+  <i style="left:84%;bottom:-6%;font-size:28px;animation-delay:3s">★</i>
+  <i style="left:93%;bottom:-6%;font-size:18px;animation-delay:6s">✦</i>
+</div>
+
+<header><nav role="tablist" aria-label="Sections">
+  <button role="tab" data-t="home" aria-selected="true">🏠 Home</button>
+  <button role="tab" data-t="about" aria-selected="false">🌸 About</button>
+  <button role="tab" data-t="minecraft" aria-selected="false">⚔️ Minecraft</button>
+  <button role="tab" data-t="specs" aria-selected="false">💻 PC Specs</button>
+  <button role="tab" data-t="community" aria-selected="false">🎉 Community</button>
+  <button role="tab" data-t="contact" aria-selected="false">💌 Contact</button>
+</nav></header>
+
+<main>
+<section class="panel hero" id="home" role="tabpanel">
+  <div class="char" role="img" aria-label="Cool tomcat mascot">
+    <svg viewBox="0 0 120 120" style="display:block;width:100%;height:auto" aria-hidden="true">
+      <path d="M20 52 L26 12 L54 34Z" fill="#fff" stroke="#2b2140" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M100 52 L94 12 L66 34Z" fill="#fff" stroke="#2b2140" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M27 40 L30 24 L43 34Z" fill="#cfd8dc"/><path d="M93 40 L90 24 L77 34Z" fill="#cfd8dc"/>
+      <circle cx="60" cy="68" r="44" fill="#fff" stroke="#2b2140" stroke-width="4"/>
+      <path d="M52 28 L54 42 M60 26 L60 42 M68 28 L66 42" stroke="#78909c" stroke-width="4" stroke-linecap="round"/>
+      <g class="eye"><ellipse cx="42" cy="68" rx="7" ry="10" fill="#2b2140"/><circle cx="44" cy="64" r="3" fill="#fff"/></g>
+      <g class="eye"><ellipse cx="78" cy="68" rx="7" ry="10" fill="#2b2140"/><circle cx="80" cy="64" r="3" fill="#fff"/></g>
+      <path d="M10 76 L34 80 M10 88 L34 86 M110 76 L86 80 M110 88 L86 86" stroke="#2b2140" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M55 78 L65 78 L60 84Z" fill="#2b2140"/>
+      <path d="M50 90 Q60 97 70 89" fill="none" stroke="#2b2140" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1>Zenix Playz</h1>
+  <p>Hii! I'm a 14 year old Minecraft player and YouTuber. Welcome to my little corner of the internet! ✨</p>
+  <div class="chips"><span class="chip">🎂 14 years old</span><span class="chip">🏆 LT5 player</span><span class="chip">⚔️ PvP fan</span></div>
+  <div class="row">
+    <button class="btn" data-go="about">Know me 🌸</button>
+    <a class="btn dc" href="https://discord.gg/cHy5w3CCyN" target="_blank" rel="noopener">Join Zenix Playz Discord</a>
+  </div>
+</section>
+
+<section class="panel" id="about" role="tabpanel" hidden>
+  <h2>About me 🌸</h2>
+  <p class="lead">A little bit about who I am.</p>
+  <div class="grid">
+    <div class="card"><span class="ico">🙋</span><h3>Name</h3><p>Zenix Playz</p></div>
+    <div class="card"><span class="ico">🎂</span><h3>Age</h3><p>14 years old</p></div>
+    <div class="card"><span class="ico">🏆</span><h3>Player level</h3><p>LT5 player</p></div>
+    <div class="card"><span class="ico">🗣️</span><h3>Languages</h3><p>Hindi and English</p></div>
+  </div>
+  <div class="card" style="margin-top:20px"><h3>What I do</h3>
+    <p>I play Minecraft, record my gameplay for YouTube and run a Discord community with giveaways, events and voice rooms.</p></div>
+</section>
+
+<section class="panel" id="minecraft" role="tabpanel" hidden>
+  <h2>Minecraft ⚔️</h2>
+  <p class="lead">My server is on the way. Here is what it will have.</p>
+  <div class="card ip">
+    <div><h3>Server IP</h3><code>Coming soon</code></div>
+    <button class="btn" disabled>Copy IP</button>
+  </div>
+  <div class="grid">
+    <div class="card"><span class="ico">⚔️</span><h3>PvP</h3><p>Duels and fights with a leaderboard.</p></div>
+    <div class="card"><span class="ico">🌲</span><h3>Survival</h3><p>Build, farm and trade with friends.</p></div>
+    <div class="card"><span class="ico">❤️</span><h3>Lifesteal</h3><p>Win fights to gain hearts.</p></div>
+    <div class="card"><span class="ico">🕹️</span><h3>Arcade</h3><p>Minigames and fun events.</p></div>
+  </div>
+  <p class="row" style="margin-top:22px"><a class="btn dc" href="https://discord.gg/cHy5w3CCyN" target="_blank" rel="noopener">Get updates on Discord</a></p>
+</section>
+
+<section class="panel" id="specs" role="tabpanel" hidden>
+  <h2>PC specs 💻</h2>
+  <p class="lead">The laptop I play and record on.</p>
+  <div class="card">
+    <div class="spec"><b>Laptop</b><span>Dell Inspiron 15 3525</span></div>
+    <div class="spec"><b>Processor</b><span>AMD Ryzen 3 5300U</span></div>
+    <div class="spec"><b>Graphics</b><span>Integrated AMD Radeon</span></div>
+    <div class="spec"><b>RAM</b><span>8 GB DDR4</span></div>
+    <div class="spec"><b>Storage</b><span>512 GB NVMe SSD</span></div>
+    <div class="spec"><b>OS</b><span>Windows 11</span></div>
+  </div>
+</section>
+
+<section class="panel" id="community" role="tabpanel" hidden>
+  <h2>Community 🎉</h2>
+  <p class="lead">Come hang out with us on Discord!</p>
+  <div class="grid">
+    <div class="card"><span class="ico">🎁</span><h3>Giveaways</h3><p>Regular rewards for members.</p></div>
+    <div class="card"><span class="ico">🎤</span><h3>Voice rooms</h3><p>Duo, trio, squad and penta rooms, plus your own VC.</p></div>
+    <div class="card"><span class="ico">🎫</span><h3>Support</h3><p>Open a ticket for help or bug reports.</p></div>
+    <div class="card"><span class="ico">🎵</span><h3>Music</h3><p>Music bots to listen together.</p></div>
+  </div>
+  <p class="row" style="margin-top:22px"><a class="btn dc" href="https://discord.gg/cHy5w3CCyN" target="_blank" rel="noopener">Join Zenix Playz Discord</a></p>
+</section>
+
+<section class="panel" id="contact" role="tabpanel" hidden>
+  <h2>Contact 💌</h2>
+  <p class="lead">Say hi or watch my videos!</p>
+  <div class="stack">
+    <div class="card"><h3>Discord</h3><p style="margin-bottom:14px">Join the server and message me there.</p>
+      <a class="btn dc" href="https://discord.gg/cHy5w3CCyN" target="_blank" rel="noopener">Join Zenix Playz Discord</a></div>
+    <div class="card"><h3>YouTube</h3><p style="margin-bottom:14px">Watch my Minecraft videos and streams.</p>
+      <a class="btn yt" href="https://youtube.com/@zenixplayzlive?si=MLONttdil3Jr9dcv" target="_blank" rel="noopener">Watch Zenix Playz on YouTube</a></div>
+  </div>
+</section>
+</main>
+
+<script>
+var tabs=[].slice.call(document.querySelectorAll('[role=tab]')),
+    panels=[].slice.call(document.querySelectorAll('.panel'));
+function show(id){
+  if(!document.getElementById(id))id='home';
+  panels.forEach(function(p){p.hidden=p.id!==id});
+  tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.t===id)});
+  document.body.dataset.t=id;
+  window.scrollTo(0,0);
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.t)})});
+[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
+show((location.hash||'#home').slice(1));
+</script>
+</body>
+</html>
